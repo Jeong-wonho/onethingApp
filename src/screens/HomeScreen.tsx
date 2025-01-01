@@ -126,10 +126,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             onDeleteTask={handleDeleteTask}
           />
         </View>
-        <Button
-          title="캘린더 보기"
-          onPress={() => navigation.navigate("Calendar")} // 캘린더 화면으로 네비게이션
-        />
       </View>
     </SafeAreaView>
   );

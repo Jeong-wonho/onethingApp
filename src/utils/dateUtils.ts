@@ -5,6 +5,7 @@ import { DateItem } from "../types";
 export const generateDateList = (baseDate: Date, count: number = 7) => {
     const dates = Array.from({length: count}, (_, i ) => {
         const date = addDays(baseDate, i);
+        
         return {
             date: format(date, 'yyyy-MM-dd'),
             dayName: format(date, 'E', {locale: ko}),
@@ -20,8 +21,10 @@ export const generateInitialDates = (selectedDate: string): DateItem[] => {
     
     const currentDate = new Date(selectedDate);
     const startDate = addDays(currentDate, -3);
-    const dates = generateDateList(startDate);
+    const dates = generateDateList(startDate, 6);
 
+    console.log('startDate', startDate);
+    
     //선택된 날짜 표시
     return dates.map(date => ({
         ...date,

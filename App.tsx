@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import { HomeScreen } from "./src/screens/HomeScreen";
 import CalendarScreen from "./src/screens/CalendarScreen";
@@ -15,16 +15,15 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  
-  
-  const handleFabPress = () => {
-    console.log("Floating button pressed");
-  };
-
-  
+  const [currentRouteName, setCurrentRouteName] = useState("Calendar");
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      onStateChange={(state) => {
+        const routeName = state?.routes[state?.index]?.name || "Calendar";
+        setCurrentRouteName(routeName); // 현재 경로 이름 업데이트
+      }}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#FAFAFA" />
       <Stack.Navigator
         initialRouteName="Calendar"
@@ -35,7 +34,7 @@ export default function App() {
         <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
-      <FloatingButton onPress={handleFabPress}/>
+      <FloatingButton  currentRouteName={currentRouteName}/>
     </NavigationContainer>
   );
 }
