@@ -20,20 +20,12 @@ const FloatingButton = ({ currentRouteName }: { currentRouteName: string }) => {
     const [isListVisible, setIsListVisible] = useState<boolean>(false);
     const animation = useRef(new Animated.Value(0)).current;
     const [icon, setIcon] = useState<IconKeys>(currentRouteName as IconKeys);
-
+    
     useEffect(() => {
-        const state = navigation.getState();
-        
-        if (state && state.routes && state.routes.length > 0) {
-            const currentRoute = state.routes[state.index].name;
-            console.log('currentRoute', currentRoute);
-            if (currentRoute === 'Home') {
-                setIcon('Home');
-            } else if (currentRoute === 'Calendar') {
-                setIcon('Calendar');
-            }
+        if (currentRouteName) {
+            setIcon(currentRouteName as IconKeys);
         }
-    }, [navigation]);
+    }, [currentRouteName]); // navigation.getState를 의존성 배열에 추가
 
     const toggleList = () => {
         setIsListVisible(!isListVisible);
@@ -53,7 +45,7 @@ const FloatingButton = ({ currentRouteName }: { currentRouteName: string }) => {
     })
 
     const handleIconPress = (key: IconKeys) => {
-        setIcon(key);
+        // setIcon(key);
         navigation.navigate(key as never);
         setIsListVisible(false);
     };
