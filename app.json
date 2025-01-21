@@ -13,16 +13,37 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jeongwonho.ExpoTodoApp",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+    "CFBundleURLTypes": [
+      {
+        "CFBundleURLSchemes": [
+          "com.googleusercontent.apps.1085286503472-2vhk6dh53mc3r7all88e53ev2mkb8gk2.apps.googleusercontent.com" // Google Cloud Console에서 생성한 클라이언트 ID
+        ]
+      }
+    ]
+  }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jeongwonho.ExpoTodoApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.1085286503472-2vhk6dh53mc3r7all88e53ev2mkb8gk2.apps.googleusercontent.com"
+        }
+      ]
+  
+  ],
   }
 }
